@@ -3,8 +3,8 @@ const btnEl = document.querySelector(`button`);
 const textEl = document.querySelector(`span`);
 
 btnEl.addEventListener(`click`, event => {
-  bodyEl.style.backgroundColor = getRandomHexColor(event);
-  textEl.textContent = getRandomHexColor(event);
+  bodyEl.style.backgroundColor = getRandomHexColor();
+  textEl.textContent = getRandomHexColor();
 });
 
 function getRandomHexColor() {
