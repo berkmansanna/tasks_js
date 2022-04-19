@@ -16,5 +16,3 @@ const makeItemsIngrEl = ingredients.map(ingredient => {
   return items;
 });
 listRef.append(...makeItemsIngrEl);
-
-console.log(listRef);

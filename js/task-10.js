@@ -1,32 +1,34 @@
-const input = document.querySelector('[type="number"]');
-const btnCreate = document.querySelector('[data-create]');
-const btnDestroy = document.querySelector('[data-destroy]');
-const boxes = document.querySelector('#boxes');
-
-const BtnClearBoxes = () => {
-  boxes.innerHTML = '';
+const ref = {
+  input: document.querySelector('[type="number"]'),
+  btnCreateDivs: document.querySelector('[data-create]'),
+  btnDestroyDivs: document.querySelector('[data-destroy]'),
+  boxes: document.querySelector('#boxes'),
 };
-
-btnCreate.addEventListener('click', BtnMakeBoxes);
-btnDestroy.addEventListener('click', BtnClearBoxes);
-
-function BtnMakeBoxes() {
-  const num = input.value;
-  const items = [];
-
-  for (let i = 1; i <= num; i += 1) {
-    const createDiv = document.createElement('div');
-
-    createDiv.style.width = i * 10 + 20 + 'px';
-    createDiv.style.height = i * 10 + 20 + 'px';
-    createDiv.style.backgroundColor = getRandomHexColor(event);
-
-    items.push(createDiv);
-  }
-
-  boxes.append(...items);
-}
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+
+let size = 30;
+const addDivs = amount => {
+  amount = ref.input.value;
+  let boxes = [...new Array(+amount).keys()];
+  const markup = boxes
+    .map(() => {
+      const box = `<div class="box" style="width:${size}px;height:${size}px;background:${getRandomHexColor()}"></div>`;
+      size += 10;
+      return box;
+    })
+    .join('');
+
+  console.log(markup);
+  ref.boxes.insertAdjacentHTML('beforeend', markup);
+};
+
+const destroyDivs = () => {
+  Array.from(ref.boxes.children).forEach(element => {
+    element.remove();
+  });
+};
+ref.btnCreateDivs.addEventListener('click', addDivs);
+ref.btnDestroyDivs.addEventListener('click', destroyDivs);

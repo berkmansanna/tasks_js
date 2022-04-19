@@ -18,6 +18,7 @@ function onSubmitForm(event) {
 
   if (formData.mail === '' || formData.password === '') {
     window.alert('Enter the text on input!');
+    return;
   } else {
     console.log(formData);
   }

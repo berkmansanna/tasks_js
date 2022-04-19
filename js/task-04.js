@@ -5,11 +5,14 @@ const refs = {
   btnIncr: document.querySelector(`[data-action='increment']`),
 };
 
-refs.btnDec.addEventListener('click', event => {
+const onDecrem = e => {
   counterValue -= 1;
   value.textContent = counterValue;
-});
-refs.btnIncr.addEventListener(`click`, event => {
+};
+const onIncrem = e => {
   counterValue += 1;
   value.textContent = counterValue;
-});
+};
+
+refs.btnDec.addEventListener('click', onDecrem);
+refs.btnIncr.addEventListener(`click`, onIncrem);
